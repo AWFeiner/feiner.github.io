@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Name — Graduate Researcher</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1a18;
+    --ink-muted: #6b6b64;
+    --ink-faint: #b0afa8;
+    --paper: #faf9f6;
+    --paper-warm: #f2f0eb;
+    --accent: #3d6b55;
+    --accent-light: #e8f0ec;
+    --serif: 'EB Garamond', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --max-w: 720px;
+    --side: clamp(1.5rem, 5vw, 4rem);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem var(--side);
+    background: rgba(250,249,246,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(26,26,24,0.07);
+  }
+
+  .nav-name {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--ink); }
+
+  /* SECTIONS */
+  section {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 var(--side);
+  }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 var(--side);
+    padding-top: 5rem;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.1s ease forwards;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 1.75rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.25s ease forwards;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-bio {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--ink-muted);
+    max-width: 520px;
+    line-height: 1.75;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s ease forwards;
+  }
+
+  .hero-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.55s ease forwards;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1.4rem;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--sans);
+    font-size: 0.83rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1.4rem;
+    border: 1px solid rgba(26,26,24,0.2);
+    color: var(--ink-muted);
+    font-family: var(--sans);
+    font-size: 0.83rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  }
+
+  .btn-ghost:hover { border-color: var(--ink); color: var(--ink); transform: translateY(-1px); }
+
+  /* DIVIDER */
+  .section-divider {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 var(--side);
+    border-top: 1px solid rgba(26,26,24,0.1);
+  }
+
+  /* SECTION HEADER */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 4rem 0 2.5rem;
+  }
+
+  .section-label span {
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    white-space: nowrap;
+  }
+
+  .section-label::after {
+    content: '';
+    display: block;
+    height: 1px;
+    flex: 1;
+    background: rgba(26,26,24,0.1);
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+  }
+
+  /* ABOUT */
+  .about-text {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--ink-muted);
+    line-height: 1.8;
+    max-width: 600px;
+    margin-bottom: 2rem;
+  }
+
+  .about-text strong {
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0;
+    border-top: 1px solid rgba(26,26,24,0.1);
+    margin-top: 2.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .info-item {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid rgba(26,26,24,0.1);
+    padding-right: 2rem;
+  }
+
+  .info-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 0.35rem;
+    font-weight: 400;
+  }
+
+  .info-value {
+    font-size: 0.92rem;
+    color: var(--ink);
+    font-weight: 400;
+  }
+
+  /* RESEARCH */
+  .research-grid {
+    display: grid;
+    gap: 0;
+    margin-bottom: 4rem;
+  }
+
+  .research-item {
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(26,26,24,0.1);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0 2rem;
+    align-start: start;
+    transition: background 0.2s;
+  }
+
+  .research-item:first-child { border-top: 1px solid rgba(26,26,24,0.1); }
+
+  .research-num {
+    font-family: var(--serif);
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+    padding-top: 0.15rem;
+    min-width: 1.5rem;
+  }
+
+  .research-content h3 {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .research-content p {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--ink-muted);
+    line-height: 1.65;
+    max-width: 520px;
+  }
+
+  .tag {
+    display: inline-block;
+    margin-top: 0.75rem;
+    padding: 0.2rem 0.6rem;
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    border-radius: 2px;
+    margin-right: 0.4rem;
+  }
+
+  /* PUBLICATIONS */
+  .pub-list {
+    display: grid;
+    gap: 0;
+    margin-bottom: 4rem;
+  }
+
+  .pub-item {
+    padding: 1.75rem 0;
+    border-bottom: 1px solid rgba(26,26,24,0.1);
+  }
+
+  .pub-item:first-child { border-top: 1px solid rgba(26,26,24,0.1); }
+
+  .pub-meta {
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--ink-faint);
+    margin-bottom: 0.45rem;
+    text-transform: uppercase;
+  }
+
+  .pub-item h3 {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.4;
+    margin-bottom: 0.4rem;
+  }
+
+  .pub-authors {
+    font-size: 0.88rem;
+    color: var(--ink-muted);
+    font-weight: 300;
+    margin-bottom: 0.75rem;
+  }
+
+  .pub-authors strong { font-weight: 500; color: var(--ink); }
+
+  .pub-link {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  .pub-link:hover { border-color: var(--accent); }
+
+  /* CONTACT */
+  .contact-block {
+    padding: 4rem 0 6rem;
+  }
+
+  .contact-block h2 {
+    margin-bottom: 0.75rem;
+  }
+
+  .contact-block p {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--ink-muted);
+    max-width: 440px;
+    margin-bottom: 2rem;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .social-link {
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(26,26,24,0.2);
+    padding-bottom: 1px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .social-link:hover { color: var(--ink); border-color: var(--ink); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid rgba(26,26,24,0.1);
+    padding: 1.75rem var(--side);
+    max-width: var(--max-w);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  footer p {
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+    font-weight: 300;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* MOBILE */
+  @media (max-width: 600px) {
+    .nav-links { gap: 1.25rem; }
+    .research-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .research-num { display: none; }
+    footer { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-name">Your Name</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <p class="hero-eyebrow">PhD Candidate · Your University</p>
+  <h1>Your Name<br><em>Graduate Researcher</em></h1>
+  <p class="hero-bio">
+    I study [your field] at [Your Department], advised by [Advisor Name].
+    My work focuses on [one compelling sentence about your research focus and why it matters].
+  </p>
+  <div class="hero-links">
+    <a href="#research" class="btn-primary">View Research ↓</a>
+    <a href="your-cv.pdf" class="btn-ghost" target="_blank">Download CV</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div class="section-divider"><div class="section-label"><span>About</span></div></div>
+<section id="about">
+  <div class="reveal">
+    <h2>A little about me</h2>
+    <p class="about-text">
+      I am a [Year, e.g. third-year] PhD student in <strong>[Department]</strong> at <strong>[University]</strong>.
+      My research explores [expand on your area — 2–3 sentences that tell a story about why this matters].
+      Before graduate school, I studied [undergraduate background] at [institution].
+    </p>
+    <p class="about-text">
+      Outside of research, I enjoy [a personal detail or two — makes you human and memorable].
+    </p>
+  </div>
+  <div class="info-grid reveal">
+    <div class="info-item">
+      <div class="info-label">Department</div>
+      <div class="info-value">Your Department</div>
+    </div>
+    <div class="info-item">
+      <div class="info-label">University</div>
+      <div class="info-value">Your University</div>
+    </div>
+    <div class="info-item">
+      <div class="info-label">Advisor</div>
+      <div class="info-value">Prof. Advisor Name</div>
+    </div>
+    <div class="info-item">
+      <div class="info-label">Location</div>
+      <div class="info-value">City, State</div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<div class="section-divider"><div class="section-label"><span>Research</span></div></div>
+<section id="research">
+  <div class="reveal">
+    <h2>Research interests</h2>
+  </div>
+  <div class="research-grid">
+    <div class="research-item reveal">
+      <div class="research-num">01</div>
+      <div class="research-content">
+        <h3>Research Area One</h3>
+        <p>A concise description of this research thread — what question you're asking, the approach you take, and what insight it aims to produce. 2–3 sentences is ideal.</p>
+        <span class="tag">Keyword</span>
+        <span class="tag">Keyword</span>
+      </div>
+    </div>
+    <div class="research-item reveal">
+      <div class="research-num">02</div>
+      <div class="research-content">
+        <h3>Research Area Two</h3>
+        <p>Another strand of your work. Keep each description tight — a focused paragraph that a curious non-specialist could follow.</p>
+        <span class="tag">Keyword</span>
+        <span class="tag">Keyword</span>
+      </div>
+    </div>
+    <div class="research-item reveal">
+      <div class="research-num">03</div>
+      <div class="research-content">
+        <h3>Research Area Three</h3>
+        <p>Optional third thread. If your work is unified, you might merge this with one of the above or use this slot for a methodology or tool you've developed.</p>
+        <span class="tag">Keyword</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<div class="section-divider"><div class="section-label"><span>Publications</span></div></div>
+<section id="publications">
+  <div class="reveal">
+    <h2>Selected publications</h2>
+  </div>
+  <div class="pub-list">
+
+    <div class="pub-item reveal">
+      <div class="pub-meta">2024 · Journal / Conference Name</div>
+      <h3>Title of Your Most Recent Paper: A Clear and Descriptive Headline</h3>
+      <p class="pub-authors"><strong>Your Name</strong>, Co-author One, Co-author Two</p>
+      <a href="#" class="pub-link">Read paper →</a>
+    </div>
+
+    <div class="pub-item reveal">
+      <div class="pub-meta">2023 · Journal / Conference Name</div>
+      <h3>Title of an Earlier Paper or Preprint Goes Here</h3>
+      <p class="pub-authors">Co-author One, <strong>Your Name</strong>, Co-author Two</p>
+      <a href="#" class="pub-link">Read paper →</a>
+    </div>
+
+    <div class="pub-item reveal">
+      <div class="pub-meta">2022 · Journal / Conference Name</div>
+      <h3>An Undergraduate or Early-Graduate Work Worth Showcasing</h3>
+      <p class="pub-authors"><strong>Your Name</strong>, Advisor Name</p>
+      <a href="#" class="pub-link">Read paper →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="section-divider"><div class="section-label"><span>Contact</span></div></div>
+<section id="contact">
+  <div class="contact-block reveal">
+    <h2>Get in touch</h2>
+    <p>I'm always happy to discuss research, collaborations, or opportunities. The best way to reach me is by email.</p>
+    <a href="mailto:yourname@university.edu" class="btn-primary" style="margin-bottom: 2rem; display: inline-flex;">yourname@university.edu</a>
+    <div style="height: 1rem;"></div>
+    <div class="social-links">
+      <a href="#" class="social-link" target="_blank">Google Scholar</a>
+      <a href="#" class="social-link" target="_blank">GitHub</a>
+      <a href="#" class="social-link" target="_blank">Twitter / X</a>
+      <a href="#" class="social-link" target="_blank">LinkedIn</a>
+      <a href="#" class="social-link" target="_blank">ORCID</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2024 Your Name · Updated November 2024</p>
+  <p>Built with care · Hosted on GitHub Pages</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
